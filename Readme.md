@@ -11,24 +11,24 @@
 
 ---
 
-## ✨ Features
+## Features
 
-| Feature                     | Description                                                         |
-| --------------------------- | ------------------------------------------------------------------- |
-| 🖱️ **One-Click Copy**       | Click any tile to instantly copy its content to clipboard           |
-| 🌊 **Slide-In Hover**       | Tiles animate left on hover with neon border highlight              |
-| 📌 **PIN / Always-on-Top**  | Neon green toggle keeps the app above all other windows             |
-| 👁️ **Auto-Hide**            | Panel collapses to a 5px edge strip when mouse leaves               |
-| 🎨 **Neon Tile Colors**     | Each snippet gets a unique warm neon accent from a 12-color palette |
-| ✏️ **Double-Click to Edit** | Full editor window opens on double-click                            |
-| ➕ **Add & Delete**         | Manage notes via toolbar buttons with confirmation prompts          |
-| ⚙️ **Settings Panel**       | Adjust opacity (0.2–1.0) and auto-hide behavior at runtime          |
-| 💾 **Persistent Storage**   | All snippets and settings saved to local JSON automatically         |
-| 🪟 **Borderless Window**    | Frameless dark UI snapped to the right edge of your screen          |
+| Feature                  | Description                                                         |
+| ------------------------ | ------------------------------------------------------------------- |
+| **One-Click Copy**       | Click any tile to instantly copy its content to clipboard           |
+| **Slide-In Hover**       | Tiles animate left on hover with neon border highlight              |
+| **PIN / Always-on-Top**  | Neon green toggle keeps the app above all other windows             |
+| **Auto-Hide**            | Panel collapses to a 5px edge strip when mouse leaves               |
+| **Neon Tile Colors**     | Each snippet gets a unique warm neon accent from a 12-color palette |
+| **Double-Click to Edit** | Full editor window opens on double-click                            |
+| **Add & Delete**         | Manage notes via toolbar buttons with confirmation prompts          |
+| **Settings Panel**       | Adjust opacity (0.2-1.0) and auto-hide behavior at runtime          |
+| **Persistent Storage**   | All snippets and settings saved to local JSON automatically         |
+| **Borderless Window**    | Frameless dark UI snapped to the right edge of your screen          |
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -51,20 +51,20 @@ python main.py
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 neonnotes/
-├── main.py          # UI logic — windows, tiles, animations
+├── main.py          # UI logic - windows, tiles, animations
 ├── database.py      # JSON read/write, color palette
-├── snippets.json    # Auto-generated — your saved notes
-├── settings.json    # Auto-generated — persisted preferences
+├── snippets.json    # Auto-generated - your saved notes
+├── settings.json    # Auto-generated - persisted preferences
 └── README.md
 ```
 
 ---
 
-## 🎮 Usage
+## Usage
 
 | Action               | How                                       |
 | -------------------- | ----------------------------------------- |
@@ -79,7 +79,7 @@ neonnotes/
 
 ---
 
-## ⚙️ Settings
+## Settings
 
 Settings are saved automatically to `settings.json`:
 
@@ -94,7 +94,7 @@ Settings are saved automatically to `settings.json`:
 
 ---
 
-## 🎨 Color Palette
+## Color Palette
 
 Tile accent colors are randomly assigned from a 12-color warm neon palette. The picker avoids repeating the last 4 used colors for maximum visual variety:
 
@@ -102,7 +102,7 @@ Tile accent colors are randomly assigned from a 12-color warm neon palette. The 
 
 ---
 
-## 🛠️ Dependencies
+## Dependencies
 
 | Package                                                         | Version | Purpose                         |
 | --------------------------------------------------------------- | ------- | ------------------------------- |
@@ -139,7 +139,7 @@ SOFTWARE.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
 
