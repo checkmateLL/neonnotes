@@ -3,9 +3,23 @@ import pyperclip
 import database
 import json
 import shutil
+import sys
+import os
 from tkinter import messagebox, filedialog
 
 ctk.set_appearance_mode("dark")
+
+def _get_icon_path() -> str | None:
+    """
+    Resolve icon.ico whether running from source or as a PyInstaller exe.
+    PyInstaller unpacks bundled data to sys._MEIPASS at runtime.
+    """
+    if getattr(sys, "frozen", False):
+        base = sys._MEIPASS
+    else:
+        base = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(base, "icon.ico")
+    return path if os.path.exists(path) else None
 
 PANEL_W_DEFAULT = 220
 PANEL_W_MIN     = 160
@@ -474,6 +488,9 @@ class QuickNotesApp(ctk.CTk):
         self.attributes("-topmost", self.settings.get("always_on_top", True))
         self.attributes("-alpha",   self.settings.get("transparency",  0.85))
         self.configure(fg_color="#0D0F11")
+        icon = _get_icon_path()
+        if icon:
+            self.iconbitmap(icon)
         self.apply_snap(self.settings.get("snap_position", "right"), initial=True)
 
     def apply_snap(self, position: str, initial: bool = False):

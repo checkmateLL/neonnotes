@@ -20,9 +20,15 @@ SETTINGS_FILE = os.path.join(APP_DIR, "settings.json")
 
 def _migrate_local_files():
     """
-    One-time migration: if old local JSON files exist in the script's folder
-    but the new AppData copies don't yet, copy them over automatically.
+    One-time migration: if old local JSON files exist in the script folder
+    but the AppData copies don't yet, copy them over automatically.
+    Skipped when running as a compiled exe — sys.frozen is set by PyInstaller
+    and there are no local dev files to migrate from in that context.
     """
+    import sys
+    if getattr(sys, "frozen", False):
+        return  # running as .exe — nothing to migrate
+
     import shutil
     script_dir = os.path.dirname(os.path.abspath(__file__))
     for fname, dest in (("snippets.json", SNIPPETS_FILE), ("settings.json", SETTINGS_FILE)):

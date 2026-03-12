@@ -1,30 +1,40 @@
 # ⚡ Neon.Notes
 
-![Version](https://img.shields.io/badge/version-1.0.0-FF007F?style=for-the-badge&logo=semantic-release&logoColor=white)
+![Version](https://img.shields.io/badge/version-2.0.0-FF007F?style=for-the-badge&logo=semantic-release&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![CustomTkinter](https://img.shields.io/badge/CustomTkinter-5.x-1E90FF?style=for-the-badge&logo=tkinter&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-00FF88?style=for-the-badge&logo=open-source-initiative&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Windows-555555?style=for-the-badge&logo=windows&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
-> Snippet manager that lives on the edge of your screen - copy anything in one click.
+> Snippet manager that lives on the edge of your screen — copy anything in one click.
 
 ---
 
 ## Features
 
-| Feature                  | Description                                                         |
-| ------------------------ | ------------------------------------------------------------------- |
-| **One-Click Copy**       | Click any tile to instantly copy its content to clipboard           |
-| **Slide-In Hover**       | Tiles animate left on hover with neon border highlight              |
-| **PIN / Always-on-Top**  | Neon green toggle keeps the app above all other windows             |
-| **Auto-Hide**            | Panel collapses to a 5px edge strip when mouse leaves               |
-| **Neon Tile Colors**     | Each snippet gets a unique warm neon accent from a 12-color palette |
-| **Double-Click to Edit** | Full editor window opens on double-click                            |
-| **Add & Delete**         | Manage notes via toolbar buttons with confirmation prompts          |
-| **Settings Panel**       | Adjust opacity (0.2-1.0) and auto-hide behavior at runtime          |
-| **Persistent Storage**   | All snippets and settings saved to local JSON automatically         |
-| **Borderless Window**    | Frameless dark UI snapped to the right edge of your screen          |
+| Feature                  | Description                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| **One-Click Copy**       | Click any tile to instantly copy its content to clipboard                    |
+| **Slide-In Hover**       | Tiles animate on hover with neon border highlight                            |
+| **PIN / Always-on-Top**  | Neon green toggle keeps the app above all other windows                      |
+| **Auto-Hide**            | Panel collapses to a 5px edge strip when mouse leaves (disabled in floating) |
+| **Neon Tile Colors**     | Each snippet gets a unique accent from a 12-color warm neon palette          |
+| **Double-Click to Edit** | Full editor window opens on double-click                                     |
+| **Add & Delete**         | Manage notes via toolbar buttons; delete shows an UNDO toast for 4 seconds   |
+| **Search / Filter**      | Live search bar filters by title or content; `Ctrl+F` or just start typing   |
+| **Categories**           | Tag each snippet; filter by category using the tab bar at the top            |
+| **Usage Counter**        | Tracks how many times each snippet has been copied                           |
+| **Sort by Usage**        | `↕` button in the toolbar sorts tiles by most-copied first                   |
+| **Drag to Reorder**      | Grab the `⠿` handle on any tile and drag it to a new position                |
+| **Drag to Move**         | Drag the top bar to reposition the window anywhere on screen                 |
+| **Edge Snapping**        | Drop near left or right edge to snap; drop anywhere else to float freely     |
+| **Snap Position**        | Choose Left, Right, or Floating from Settings                                |
+| **Resizable**            | Drag the bottom grip to resize height; drag the right grip to resize width   |
+| **Settings Panel**       | Adjust opacity, auto-hide, snap position, export and import snippets         |
+| **Export / Import**      | Back up or share your snippets as a JSON file from the Settings panel        |
+| **Persistent Storage**   | All data saved to `%APPDATA%\NeonNotes\` — never lost between sessions       |
+| **Borderless Window**    | Frameless dark UI with custom icon support                                   |
 
 ---
 
@@ -49,48 +59,91 @@ pip install customtkinter pyperclip
 python main.py
 ```
 
+Data files (`snippets.json`, `settings.json`) are created automatically on first run inside `%APPDATA%\NeonNotes\`. They are never stored next to the script.
+
+---
+
+## Building an Executable
+
+To share the app or run it without Python installed:
+
+```bash
+# 1. Install PyInstaller
+pip install pyinstaller
+
+# 2. Build
+pyinstaller --noconfirm --onefile --windowed \
+  --icon=icon.ico \
+  --collect-data customtkinter \
+  --add-data "icon.ico;." \
+  --name="NeonNotes" \
+  main.py
+```
+
+The output is `dist/NeonNotes.exe`. No Python installation required to run it.
+
+> **Note:** When running the exe for the first time, fresh default snippets are generated automatically. The exe never reads or copies any local JSON files from the project folder.
+
 ---
 
 ## Project Structure
 
 ```
 neonnotes/
-├── main.py          # UI logic - windows, tiles, animations
-├── database.py      # JSON read/write, color palette
-├── snippets.json    # Auto-generated - your saved notes
-├── settings.json    # Auto-generated - persisted preferences
+├── main.py          # UI logic — windows, tiles, animations, drag, resize
+├── database.py      # JSON read/write, color palette, AppData paths
+├── icon.ico         # Custom app icon (used by both script and exe)
 └── README.md
 ```
+
+`snippets.json` and `settings.json` live in `%APPDATA%\NeonNotes\` and are never committed to the repository.
 
 ---
 
 ## Usage
 
-| Action               | How                                       |
-| -------------------- | ----------------------------------------- |
-| Copy a snippet       | Single click on any tile                  |
-| Edit a snippet       | Double-click on the tile                  |
-| Add new snippet      | Click **+** in the toolbar                |
-| Delete a snippet     | Click the **×** on the right of the tile  |
-| Toggle always-on-top | Use the **PIN** switch (neon green)       |
-| Auto-hide on/off     | Open **⚙ Settings**                       |
-| Adjust transparency  | Open **⚙ Settings** → drag opacity slider |
-| Close the app        | Click **✕** in the toolbar                |
+| Action               | How                                                        |
+| -------------------- | ---------------------------------------------------------- |
+| Copy a snippet       | Single click on any tile                                   |
+| Edit a snippet       | Double-click on the tile                                   |
+| Add new snippet      | Click **+** in the toolbar                                 |
+| Delete a snippet     | Click **×** on the tile — an UNDO toast appears for 4s     |
+| Search snippets      | Type anywhere, or press `Ctrl+F` to focus the search bar   |
+| Filter by category   | Click a category button in the tab bar                     |
+| Sort by usage        | Click **↕** in the toolbar (lights up pink when active)    |
+| Reorder tiles        | Drag the **⠿** handle on the left of any tile              |
+| Move the window      | Drag the **NEON.NOTES** label or top bar background        |
+| Snap to edge         | Drag and drop within 40px of the left or right screen edge |
+| Float freely         | Drop the window away from any edge                         |
+| Resize height        | Drag the grip strip at the bottom                          |
+| Resize width         | Drag the grip strip on the right side                      |
+| Toggle always-on-top | Use the **PIN** switch                                     |
+| Change snap position | Open **⚙ Settings** → Snap Position                        |
+| Auto-hide on/off     | Open **⚙ Settings** → Auto-hide to edge                    |
+| Adjust transparency  | Open **⚙ Settings** → drag the opacity slider              |
+| Export snippets      | Open **⚙ Settings** → Export Snippets                      |
+| Import snippets      | Open **⚙ Settings** → Import Snippets                      |
+| Close the app        | Click **✕** in the toolbar                                 |
 
 ---
 
 ## Settings
 
-Settings are saved automatically to `settings.json`:
+Settings are saved automatically to `%APPDATA%\NeonNotes\settings.json`:
 
 ```json
 {
   "transparency": 0.85,
   "main_color": "#0D0F11",
   "auto_hide": true,
-  "always_on_top": true
+  "always_on_top": true,
+  "snap_position": "right",
+  "window_height": 620,
+  "window_width": 220
 }
 ```
+
+`snap_position` accepts `"left"`, `"right"`, or `"floating"`.
 
 ---
 
@@ -98,7 +151,7 @@ Settings are saved automatically to `settings.json`:
 
 Tile accent colors are randomly assigned from a 12-color warm neon palette. The picker avoids repeating the last 4 used colors for maximum visual variety:
 
-`#FF007F` `#FF4D4D` `#FFA500` `#FFCC00` `#FF6347` `#FF3399` `#FFD700` `#E91E63` `#FF5500` `#FF1493` `#F4A261` `#FF6B6B`
+`#FF007F` `#FF4D4D` `#FFA500` `#FFCC00` `#00E5FF` `#00FF88` `#BF5FFF` `#FF6B35` `#FFD700` `#1DE9B6` `#FF3D71` `#AEEA00`
 
 ---
 
@@ -111,12 +164,25 @@ Tile accent colors are randomly assigned from a 12-color warm neon palette. The 
 
 ---
 
-## 📄 License
+## .gitignore
+
+```
+build/
+dist/
+*.spec
+__pycache__/
+snippets.json
+settings.json
+```
+
+---
+
+## License
 
 ```
 MIT License
 
-Copyright (c) 2024 NeonNotes Contributors
+Copyright (c) 2026 NeonNotes Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,3 +1,10 @@
 /settings.json
 /snippets.json
 /__pycache__
+build/
+dist/
+*.spec
+__pycache__/
+snippets.json
+settings.json
+*.ico
