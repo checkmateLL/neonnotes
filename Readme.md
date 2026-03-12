@@ -86,6 +86,12 @@ The output is `dist/NeonNotes.exe`. No Python installation required to run it.
 
 ---
 
+## Download
+
+Grab the latest `NeonNotes.exe` from the [Releases page](https://github.com/checkmateLL/neonnotes/releases/latest) — no Python required.
+
+---
+
 ## Project Structure
 
 ```
