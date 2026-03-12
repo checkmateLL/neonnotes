@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![CustomTkinter](https://img.shields.io/badge/CustomTkinter-5.x-1E90FF?style=for-the-badge&logo=tkinter&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-00FF88?style=for-the-badge&logo=open-source-initiative&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-555555?style=for-the-badge&logo=windows&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows?style=for-the-badge&logo=windows&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
 > Snippet manager that lives on the edge of your screen - copy anything in one click.
